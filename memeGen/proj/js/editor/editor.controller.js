@@ -14,6 +14,29 @@ function renderCanvas() {
     // setText()
 }
 
+function downloadCanvas(elLink) {
+
+    var img = new Image()
+    img.src = loadFromStorage(URL_KEY)
+    
+    img.onload = () => { 
+        gCtxCopy.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
+        setCanvasCopy()
+    }
+
+
+    var data = gCanvasCopy.toDataURL();
+    elLink.href = data;
+    elLink.download = 'puski';
+
+  
+}
+
+
+function setCanvasCopy(){
+    renderCopy()
+}
+
 function onPallete(val){
     setFontColor(val)
    

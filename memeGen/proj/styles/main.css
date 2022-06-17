@@ -129,10 +129,12 @@ footer{
 
 .canvas{
     position: absolute;
+    /* display: none; */
 }
 
 .canvas-bottom{
     position: relative;
+    /* opacity: 0; */
 
     z-index: -1;
 }
@@ -277,4 +279,15 @@ canvas{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.fa.fa-solid.fa-download::before{
+    content: "\f019";
+    color: rgb(255, 166, 0);
+}
+
+.canvas-copy{
+    position: absolute;
+    right: 0;
+
 }

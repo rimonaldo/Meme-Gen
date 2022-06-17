@@ -3,6 +3,8 @@ const URL_KEY = 'URL'
 const MEME_KEY = 'MEME'
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 
+var gCanvasCopy
+var gCtxCopy
 var gStartPos
 var gUrl
 var gMemes = []
@@ -43,6 +45,33 @@ var gMeme = {
 /* RENDERS
 // -----------------------------------------------------------------*/
 
+function renderCopy(){
+    var img = new Image()
+    img.src = loadFromStorage(URL_KEY)
+
+    img.onload = () => {
+
+        for (var i = 0; i < gMeme.lines.length; i++) {
+            var text = gMeme.lines[i].text
+            var { x, y } = gMeme.lines[i].linePos
+            drawCopyText(text, i)
+        }
+
+    }
+}
+
+function drawCopyText(text, idx = gMeme.lineIdx) {
+    console.log(idx);
+    var line = gMeme.lines[idx]
+    var {x,y} = line.linePos
+    gCtxCopy.lineWidth = 3
+    gCtxCopy.strokeStyle = line.stroke
+    gCtxCopy.font = line.size + 'px Impact'
+    gCtxCopy.fillStyle = line.color
+    gCtxCopy.fillText(text, x, y)
+    gCtxCopy.strokeText(text, x, y)
+}
+
 function renderMemeImg() {
     var img = new Image()
     img.src = loadFromStorage(URL_KEY)
@@ -51,10 +80,12 @@ function renderMemeImg() {
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
         gCtxBottom.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
+        gCtxCopy.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
         setText(getLine().text)
         _clearStroke()
         _strokeRect(getLine().linePos.x,getLine().linePos.y)
         renderLines()
+        renderCopy()
     }
 }
 
@@ -167,6 +198,9 @@ function setCanvas() {
     //bottom layer
     gCanvasBottom = document.querySelector('.canvas-bottom')
     gCtxBottom = gCanvasBottom.getContext('2d')
+    // copy for download
+    gCanvasCopy = document.querySelector('.canvas-copy')
+    gCtxCopy = gCanvasCopy.getContext('2d')
 }
 
 function setImgId() {
@@ -247,6 +281,9 @@ function drawText(text, idx = gMeme.lineIdx) {
     gCtx.fillText(text, x, y)
     gCtx.strokeText(text, x, y)
 }
+
+
+
 
 function clearLine(x = gCanvas.width, y = gCanvas.height) {
     var size = gMeme.lines[gMeme.lineIdx].size
