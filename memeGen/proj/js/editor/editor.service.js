@@ -62,7 +62,7 @@ function renderLines() {
     for (var i = 0; i < gMeme.lines.length; i++) {
         var text = gMeme.lines[i].text
         var { x, y } = gMeme.lines[i].linePos
-        drawText(text, x, y)
+        drawText(text, i)
     }
 }
 
@@ -178,7 +178,7 @@ function setText(text = getLine().text) {
     var { x, y } = getLinePos()
     clearLine(x, y)
     setInputVal(text)
-    drawText(text, x, y)
+    drawText(text)
     saveMeme()
 }
 
@@ -236,12 +236,14 @@ function getColor() {
 /* CANVAS
 // ------------------------------------------------------*/
 
-function drawText(text, x, y) {
-    var line = getLine()
+function drawText(text, idx = gMeme.lineIdx) {
+    
+    var line = gMeme.lines[idx]
+    var {x,y} = line.linePos
     gCtx.lineWidth = 3
     gCtx.strokeStyle = line.stroke
     gCtx.font = line.size + 'px Impact'
-    gCtx.fillStyle = getColor()
+    gCtx.fillStyle = line.color
     gCtx.fillText(text, x, y)
     gCtx.strokeText(text, x, y)
 }

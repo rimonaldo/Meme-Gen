@@ -48,7 +48,7 @@ function setFontSize(size){
     var {x,y} = getLinePos()  
     clearLine(x, y)   
     getLine().size = +size
-    drawText(getLine().text, x, y)
+    drawText(getLine().text)
     saveMeme()
 }
 
