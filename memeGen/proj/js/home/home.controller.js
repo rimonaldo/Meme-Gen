@@ -12,11 +12,17 @@ function initg() {
 
 function renderGallery() {
     var elGallery = document.querySelector('.gallery-container')
-
+    var innerHTML = ""
+    var startHtml = `<div class="upload"><a href="#" class="fa fa-solid fa-upload gallery-img"> <input onchange="loadImg(value)" id="image-input" accept="image/png, image/jpeg" type="file"></a></div>`
     gImgs.forEach((img) => {
-        elGallery.innerHTML += ` <a href="editor.html"> <img  onclick="getMeme(${img.id})" class="gallery-img" id="${img.id}" src='${img.url}' alt=""></a>`
+        console.log(img);
+        innerHTML += ` <a href="editor.html"> <img  onclick="getMeme(${img.id})" class="gallery-img" id="${img.id}" src='${img.url}' alt=""></a>`
+        console.log(elGallery.innerHTML);
     })
+    elGallery.innerHTML = startHtml+ innerHTML
 }
+
+
 
 function getMeme(img) {
     var id = img.id
@@ -26,25 +32,41 @@ function getMeme(img) {
 
     saveToStorage(URL_KEY, gUrl)
     saveToStorage(ID_KEY, id)
-
+    
 }
 
 
 function addMemes(url) {
     
-    console.log('h');
-    for (var i = 0; i < 15; i++) {
+    if(!url){
+        for (var i = 0; i < 15; i++) {
+            var id = _makeId()
+            gImgs.push({
+                tags: ['funny'],
+                id,
+                url: `../meme-imgs (square)/${i + 1}.jpg`
+            })
+        }
+    } else{
+        console.log('new img');
         var id = _makeId()
-        gImgs.push({
-            tags: ['funny'],
+        gImgs.unshift({
+            tags: ['funny', 'new'],
             id,
-            url: `../meme-imgs (square)/${i + 1}.jpg`
+            url
         })
+        console.log(gImgs);
     }
+
+    
 
 }
 
+function renderUploadedImg(url){
 
+    addMemes(url)
+    renderGallery()
+}
 
 var imageInput = document.querySelector('#image-input')
 var uploadedImg = ""
@@ -55,13 +77,14 @@ function loadImg(val) {
     var fReader = new FileReader()
     console.log(file);
     fReader.readAsDataURL(file)
-
+    
     fReader.onloadend = function (event) {
         var elNewImg = document.querySelector('.new-image')
-        elNewImg.innerHTML = `<a href="#" class="gallery-img img-target"></a>`
-        elNewImg.style.display = 'block'
-        console.log(event.target.result);
-        document.querySelector('.img-target').style.backgroundImage = `url(${event.target.result})`
+        // elNewImg.innerHTML = `<a href="#" class="gallery-img img-target"></a>`
+        // elNewImg.style.display = 'block'
+        // console.log(event.target.result);
+        // document.querySelector('.img-target').style.backgroundImage = `url(${event.target.result})`
+        renderUploadedImg(event.target.result)
     }
 
 }

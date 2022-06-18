@@ -14,8 +14,8 @@ function renderCanvas() {
     // setText()
 }
 
-function downloadCanvas(elLink) {
-
+function downloadCanvas(elLink,ev) {
+    ev.preventDefault()
     var img = new Image()
     img.src = loadFromStorage(URL_KEY)
     
@@ -32,6 +32,14 @@ function downloadCanvas(elLink) {
   
 }
 
+function setDownload(elLink,ev){
+    ev.preventDefault()
+    setTimeout(()=>{
+        
+       downloadCanvas(elLink)
+       
+    },1000)
+}
 
 function setCanvasCopy(){
     renderCopy()

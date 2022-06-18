@@ -129,12 +129,10 @@ footer{
 
 .canvas{
     position: absolute;
-    /* display: none; */
 }
 
 .canvas-bottom{
     position: relative;
-    /* opacity: 0; */
 
     z-index: -1;
 }
@@ -289,5 +287,5 @@ canvas{
 .canvas-copy{
     position: absolute;
     right: 0;
-
+    opacity: 0;
 }

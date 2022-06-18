@@ -89,6 +89,8 @@ function renderMemeImg() {
     }
 }
 
+
+
 function renderLines() {
     for (var i = 0; i < gMeme.lines.length; i++) {
         var text = gMeme.lines[i].text
