@@ -15,7 +15,7 @@ function renderCanvas() {
 }
 
 function downloadCanvas(elLink,ev) {
-    ev.preventDefault()
+    
     var img = new Image()
     img.src = loadFromStorage(URL_KEY)
     
@@ -33,12 +33,9 @@ function downloadCanvas(elLink,ev) {
 }
 
 function setDownload(elLink,ev){
-    ev.preventDefault()
-    setTimeout(()=>{
-        
-       downloadCanvas(elLink)
-       
-    },1000)
+    // ev.preventDefault()
+    downloadCanvas(elLink)
+
 }
 
 function setCanvasCopy(){
@@ -90,7 +87,7 @@ function onAlign(direction){
 }
 
 function onDeleteLine() {
-
+    clearCanvas()
 }
 
 

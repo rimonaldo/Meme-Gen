@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="memeGen/proj/styles/main.css">
 </head>
 
 <body onload="initg()">
@@ -26,7 +26,7 @@
         <header><h1>memeGen</h1></header>
             
         <div class="gallery-container">
-            <div class="upload"><a href="#" class="fa fa-solid fa-upload gallery-img"> <input onchange="loadImg(value)" id="image-input" accept="image/png, image/jpeg" type="file"></a></div>
+            <div class="upload"><a href="#" class="fa fa-solid fa-upload gallery-img"> <input onchange="onLoadImg(value)" id="image-input" accept="image/png, image/jpeg" type="file"></a></div>
 
            
         </div>
@@ -35,10 +35,10 @@
     </div>
 
 
-    <script src="js/storage.js"></script>
-    <script src="js/editor/editor.service.js"></script>
-    <script src="js/home/home.service.js"></script>
-    <script src="js/home/home.controller.js"></script>
+    <script src="memeGen/proj/js/storage.js"></script>
+    <script src="memeGen/proj/js/editor/editor.service.js"></script>
+    <script src="memeGen/proj/js/home/home.service.js"></script>
+    <script src="memeGen/proj/js/home/home.controller.js"></script>
 </body>
 
 </html>

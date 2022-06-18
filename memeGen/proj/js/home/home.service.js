@@ -1,6 +1,7 @@
 'use strict'
 
 const ID_KEY = 'IMGID'
+const GALLERY_ID = 'IMAGES_GALLERY'
 
 function _findIdxById(id,list) {
     return list.findIndex(item => item.id === id)

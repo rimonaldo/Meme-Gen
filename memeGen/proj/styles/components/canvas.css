@@ -1,3 +1,10 @@
+.meme-box{
+    margin: auto;
+    width: 80%;
+    display: flex;
+    /* border: 1px red solid; */
+    justify-content: space-between;
+}
 
 .canvas-box{
     position: relative;
@@ -5,14 +12,18 @@
 
 .canvas{
     position: absolute;
-    /* display: none; */
 }
 
 .canvas-bottom{
     position: relative;
-    /* opacity: 0; */
 
     z-index: -1;
+}
+
+
+
+canvas{
+    border: black 1px solid;
 }
 
 
@@ -21,9 +32,3 @@
     right: 0;
     opacity: 0;
 }
-
-
-canvas{
-    border: black 1px solid;
-}
-
